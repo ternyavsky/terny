@@ -1,0 +1,120 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,100&display=swap');
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1,h2,h3,h4,h5,p{
+	font-family: Montserrat;
+}
+
+body{
+	position: relative;
+	z-index: 2;
+ 	background: #0A0A0A;
+  	font-family: Montserrat;
+}
+
+
+h1{
+	font-family: Montserrat;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 108px */
+    letter-spacing: -0.9px;
+}
+h2{
+	color: var(--shade1, #FFF);
+	font-size: 48px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 150%; /* 72px */
+}
+
+h3{
+	color: var(--shade1, #FFF);
+	font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 41.6px */
+}
+
+a{
+  text-decoration: none;
+  color: var(--shade1, #FFF);
+}
+
+.link_project{
+	margin-top: 68px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	color: var(--shade1, #FFF);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 24px; /* 150% */
+	text-decoration-line: underline;
+}
+
+.footer_name{
+	color: var(--shade-2, #B3B3B3);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px; /* 171.429% */
+	margin-top: 100px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.main_container{
+	margin-left: 120px;
+	margin-right: 120px;
+
+}
+
