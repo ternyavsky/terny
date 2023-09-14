@@ -30,7 +30,7 @@ export default function Root() {
       </Head>
       <Body>
         <Header />
-          <TitleBlock />
+        <TitleBlock />
         <MainNav  />
         <Main />
         <Main />

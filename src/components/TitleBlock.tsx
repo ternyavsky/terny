@@ -1,5 +1,4 @@
-import { style } from "solid-js/web"
-import styles from  "./TitleBlock.css"
+import "./TitleBlock.css"
 
 
 export default function TitleBlock(){
