@@ -32,34 +32,70 @@
     margin-top: 20px;
 }
 
-.link{
-    margin-top: 48px;
+
+
+
+
+
+@media screen and (min-width: 310px){
+    .link_text{
+        padding: 12px 16px 12px 16px;
+        color: var(--shade1, #FFF);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%; /* 24px */
+    }
+    .link{
+        margin-top: 48px;
+    }
+    .button_link{
+        margin: auto;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        width: 300px;
+        border-radius: 8px;
+        border: 1px solid var(--shade-3, #3B3B3B);
+        background: var(--shade-5, #0A0A0A);
+    }
+    .link_icon{
+        padding: 12px 0 12px 16px;
+        width: 24px;
+        height: 24px;
+    
+    }
 }
 
-.link_icon{
-    padding: 12px 0 12px 16px;
-    width: 24px;
-    height: 24px;
+@media screen and (max-width: 309px){
+    .link_text{
+       display: none;
+    }
+    .link{
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 30px;
+        height: 30px;
+    }
+    .button_link{
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+        justify-content: center;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid var(--shade-3, #3B3B3B);
+        background: var(--shade-5, #0A0A0A);
+    }
+    .link_icon{
+        padding: 3px;
+        width: 24px;
+        height: 24px;
+    
+    }
+}
 
-}
-.button_link{
-    margin: auto;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    width: 300px;
-    border-radius: 8px;
-    border: 1px solid var(--shade-3, #3B3B3B);
-    background: var(--shade-5, #0A0A0A);
-}
-.link_text{
-    padding: 12px 16px 12px 16px;
-    color: var(--shade1, #FFF);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
-}
 
 .button_link:hover{
     background: var(--gradient-01, linear-gradient(90deg, #FFE074 0.85%, #50CAE4 52.93%, #9B5CFF 100.85%));
