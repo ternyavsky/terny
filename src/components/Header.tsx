@@ -1,7 +1,6 @@
 import { createEffect, createSignal } from "solid-js"
 import "./Header.css"
 import { Scripts } from "solid-start";
-import { Script } from "vm";
 import { A } from "@solidjs/router";
 
 export default function Header(){
