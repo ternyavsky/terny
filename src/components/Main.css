@@ -113,15 +113,19 @@
     .text_section{
         text-align: center;
         margin: auto;
+        margin-top: 20px;
     }
     .main_button{
         margin: auto;
+        margin-top: 20px;
     }
     .main_img{
         display: block;
         width: 185px;
         height: 130px;
         margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 

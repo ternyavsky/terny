@@ -36,5 +36,13 @@
         align-items: flex-start;
         gap: 16px;
     }
+    .nav_title{
+        margin: auto;
+    }
+    .nav_text{
+        margin-right: 10px;
+        margin-left: 10px;
+        margin: auto;
+    }
 } 
 
