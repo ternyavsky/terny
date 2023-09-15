@@ -59,7 +59,6 @@ body{
 
 
 h1{
-	font-family: Montserrat;
     font-size: 60px;
     font-style: normal;
     font-weight: 700;
@@ -82,9 +81,14 @@ h3{
     line-height: 130%; /* 41.6px */
 }
 
-a{
+.header_item a, .main_button a, .link a{
   text-decoration: none;
   color: var(--shade1, #FFF);
+}
+
+button{
+	background: #0A0A0A;
+	animation: none;
 }
 
 .link_project{

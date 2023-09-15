@@ -1,0 +1,62 @@
+.main_con{
+    margin-top: 150px;
+}
+
+.login_container{
+    align-items: center;
+    justify-content: center;
+}
+
+.login_title{
+    text-align: center;
+
+}
+
+.login_form{
+    display: flex;
+    margin: auto;
+    
+    justify-content: center;
+}
+.login_text{
+    margin-top: 20px;
+    width: 400px;
+    font-family: Montserrat;
+    padding: 10px;
+    height: 10px;
+    border-radius: 20px;
+    display: block;
+}
+
+.login_password{
+    /* width: 400px; */
+    width: 400px;
+    font-family: Montserrat;
+    margin-top: 20px;
+    padding: 10px;
+    height: 10px;
+    border-radius: 20px;
+    display: block;
+}
+
+.login_button{
+
+    font-family: Montserrat;
+    height: 40px;
+    background: #df4e4e;
+    border-radius: 20px;
+    margin-top: 20px;
+    width: 424px;
+
+}
+
+.login_link{
+    color: var(--shade1, #FFF);
+
+    text-decoration-color: #FFF;
+}
+
+.login_link_text{
+    margin-left: 5px;
+    margin-top: 5px;
+}

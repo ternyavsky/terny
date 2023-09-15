@@ -29,19 +29,19 @@ export default function About(){
                         <div class="row">
                             <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User Interfac (UI) Design
+                            REST, gRPC, GraphQL
                             </p>
                         </div>
                         <div class="row">
                         <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User Interface (UI) Design
+                            Python, Golang, JavaScript
                             </p>
                         </div>
                         <div class="row">
                         <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User 
+                            Docker, Kubernetes
                             </p>
                         </div>
                     </div>
@@ -49,25 +49,25 @@ export default function About(){
                         <div class="row">
                             <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User  (UI) Design
+                                PostgreSQL, MySQL
                             </p>
                         </div>
                         <div class="row">
                             <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User Interface (UI) Design
+                            Solid, React, TypeScript
                             </p>
                         </div>
                         <div class="row">
                         <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User Interface (UI) Design
+                            Django, Flask, FastAPI
                             </p>
                         </div>
                         <div class="row">
                         <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">
-                            User Interface (UI) Design
+                            System Design
                             </p>
                         </div>
                     </div>
