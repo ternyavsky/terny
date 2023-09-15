@@ -76,6 +76,14 @@
         justify-content: center;
     }
 
+    .title_about{
+        text-align: center;
+    }
+
+    .skills_title{
+        text-align: center;
+    }
+
 }
 
 
