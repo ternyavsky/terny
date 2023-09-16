@@ -85,7 +85,7 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 	claims := &jwtUserClaims{
 		user,
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Minute).Unix(),
+			ExpiresAt: time.Now().Add(time.Minute * 5).Unix(),
 		},
 	}
 

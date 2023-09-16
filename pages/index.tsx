@@ -1,5 +1,5 @@
 // @refresh reload
-import { Component, Suspense } from "solid-js";
+import { Component, Suspense, onMount } from "solid-js";
 import {
   A,
   Body,
@@ -21,6 +21,7 @@ import About from "../src/components/About";
 import Footer from "../src/components/Footer";
 
 export default function Index() {
+
   return (
     <Html lang="en">
       <Head>
