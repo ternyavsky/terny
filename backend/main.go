@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"time"
 
+	"crypto/tls"
 	"database/sql"
 
 	"github.com/dgrijalva/jwt-go"
@@ -160,9 +161,25 @@ func main() {
 	})
 	mux.HandleFunc("/reg", Registration)
 	mux.HandleFunc("/login", CreateTokenEndpoint)
+
+	certManager := autocert.Manager{
+		Prompt:     autocert.AcceptTOS,
+		Cache:      autocert.DirCache("certs"),
+		HostPolicy: autocert.HostWhitelist("ternyavsky.ru"),
+	}
+
+	go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
+
+	server := &http.Server{
+		Addr:    ":443",
+		Handler: mux,
+		TLSConfig: &tls.Config{
+			GetCertificate: certManager.GetCertificate,
+		},
+	}
 	// srv := &http.Server{
 	// 	Addr: fmt.Sprintf(":%d", 8443),
 	// 	Handler: handler,
 	// }
-	log.Fatal(http.Serve(autocert.NewListener("ternyavsky.ru"), mux))
+	log.Fatal(server.ListenAndServeTLS("", ""))
 }
