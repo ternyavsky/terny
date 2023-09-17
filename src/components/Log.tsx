@@ -15,7 +15,7 @@ export const [name, setName] = createSignal("Login")
 const PostLogin = async (username:string, password: string) =>{
   
   const res = await fetch(
-    "http://ternyavsky.ru/login",{
+    "https://ternyavsky.ru/login",{
       method: "POST",
       body: JSON.stringify({
         username: username,
