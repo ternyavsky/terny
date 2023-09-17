@@ -1,30 +1,50 @@
-# SolidStart
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+# Site
+- https://ternyavsky.vercel.app/
 
-## Creating a project
+![Снимок экрана от 2023-09-17 22-09-31](https://github.com/ternyavsky/terny/assets/105453132/6da68cf4-af92-4911-a28e-85f6c4caeeab)
 
+
+
+## Tech
+Frontend:
+- SolidJS
+- TypeScript
+
+Backend:
+- Golang
+- GraphQL
+
+
+
+
+## API Reference
+
+#### Login
 ```bash
-# create a new project in the current directory
-npm init solid@latest
-
-# create a new project in my-app
-npm init solid@latest my-app
+  POST /login 
+```
+```http
+  { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}  
 ```
 
-## Developing
+Upon successful authorization, the token is saved in the browser cookies 
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+#### Register
 
 ```bash
-npm run dev
+  POST /reg
+```
+Creates a user in the database
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+#### Get User
+```bash
+  GraphQL graphql?query={account{id,username}}&token=token
 ```
 
-## Building
-
-Solid apps are built with _adapters_, which optimise your project for deployment to different environments.
-
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different adapter, add it to the `devDependencies` in `package.json` and specify in your `vite.config.js`.
+```json
+  "account": {
+    "id": 2,
+    "username": "Alex"
+  }
+```
