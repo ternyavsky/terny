@@ -15,6 +15,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/mitchellh/mapstructure"
 	"github.com/rs/cors"
+	"golang.org/x/crypto/acme/autocert"
 )
 
 type User struct {
@@ -157,5 +158,9 @@ func main() {
 	mux.HandleFunc("/reg", Registration)
 	mux.HandleFunc("/login", CreateTokenEndpoint)
 	handler := cors.Default().Handler(mux)
-	http.ListenAndServe(":8000", handler)
+	// srv := &http.Server{
+	// 	Addr: fmt.Sprintf(":%d", 8443),
+	// 	Handler: handler,
+	// }
+	http.Serve(autocert.NewListener("176.53.163.97"), handler)
 }
