@@ -45,7 +45,7 @@ export default function About(){
                             </p>
                         </div>
                     </div>
-                    <div class="col" style="margin-left: 150px">
+                    <div class="col" >
                         <div class="row">
                             <img class="row_img" src="../assets/Ellipse 1.svg"></img>
                             <p class="row_text">

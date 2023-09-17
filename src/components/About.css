@@ -50,6 +50,9 @@
         align-items: center;
         justify-content: center;
     }
+    .col:last-child{
+        margin-left: 220px;
+    }
 }
 
 @media screen and (max-width: 849px){
@@ -82,6 +85,10 @@
 
     .skills_title{
         text-align: center;
+    }
+
+    .col:last-child{
+        margin-left: 30px;
     }
 
 }
