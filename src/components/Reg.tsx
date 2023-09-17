@@ -5,7 +5,7 @@ import { createEffect, createSignal } from "solid-js"
 
 
 const CreateUser = async (username: string, password: string) => {
-  const res = await fetch("http://localhost:8000/reg",{
+  const res = await fetch("http://176.53.163.97:8000/reg",{
     method: "POST",
     body: JSON.stringify({
       username: username,
