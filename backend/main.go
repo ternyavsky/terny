@@ -117,7 +117,7 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func redirectTLS(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "https://"+"1195849-cu97797.tw1.ru/"+":443"+r.RequestURI, http.StatusMovedPermanently)
+	http.Redirect(w, r, "https://"+"ternyavsky.ru/"+":443"+r.RequestURI, http.StatusMovedPermanently)
 }
 
 
@@ -174,5 +174,5 @@ func main() {
 	// 	Addr: fmt.Sprintf(":%d", 8443),
 	// 	Handler: handler,
 	// }
-	http.Serve(autocert.NewListener("1195849-cu97797.tw1.ru/"), handler)
+	http.Serve(autocert.NewListener("ternyavsky.ru/"), handler)
 }
