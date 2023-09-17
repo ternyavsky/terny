@@ -116,9 +116,6 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func redirectTLS(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "https://"+"ternyavsky.ru/"+":443"+r.RequestURI, http.StatusMovedPermanently)
-}
 
 
 func main() {
@@ -150,12 +147,6 @@ func main() {
 		Query: rootQuery,
 	})
 
-	go func() {
-		if err := http.ListenAndServe(":80", http.HandlerFunc(redirectTLS)); err != nil {
-			log.Fatalf("ListenAndServe error: %v", err)
-		}
-	}()
-
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
@@ -174,5 +165,5 @@ func main() {
 	// 	Addr: fmt.Sprintf(":%d", 8443),
 	// 	Handler: handler,
 	// }
-	http.Serve(autocert.NewListener("ternyavsky.ru/"), handler)
+	log.Fatal(http.Serve(autocert.NewListener("ternyavsky.ru"), handler))
 }
