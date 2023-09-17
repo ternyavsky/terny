@@ -5,7 +5,7 @@ import { name, setName } from "./components/Log";
 export const GetUserName = async () =>{
     const token: string | undefined = getCookie("token")
     if (token != undefined){
-        const res = await fetch(`http://176.53.163.97:8000//graphql?query={account{id,username}}&token=${token}`)
+        const res = await fetch(`http://ternyavsky.ru/graphql?query={account{id,username}}&token=${token}`)
         if (res.ok){
             let result = await res.json()
             if ("errors" in result){
