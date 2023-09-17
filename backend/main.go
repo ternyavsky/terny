@@ -16,6 +16,7 @@ import (
 	"github.com/graphql-go/graphql"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/mitchellh/mapstructure"
+	"github.com/rs/cors"
 	"golang.org/x/crypto/acme/autocert"
 )
 
@@ -169,10 +170,10 @@ func main() {
 	}
 
 	go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
-
+	handler := cors.Default().Handler(mux)
 	server := &http.Server{
 		Addr:    ":443",
-		Handler: mux,
+		Handler: handler,
 		TLSConfig: &tls.Config{
 			GetCertificate: certManager.GetCertificate,
 		},
