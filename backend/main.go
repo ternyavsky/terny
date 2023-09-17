@@ -4,11 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"time"
 
 	"database/sql"
@@ -17,7 +15,6 @@ import (
 	"github.com/graphql-go/graphql"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/mitchellh/mapstructure"
-	"github.com/rs/cors"
 	"golang.org/x/crypto/acme/autocert"
 )
 
@@ -117,21 +114,10 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{ "token": "` + tokenStr + `"}`))
 
 }
-var domain string
 
-func redirectTLS(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "https://"+domain+":443"+r.RequestURI, http.StatusMovedPermanently)
-}
 
 
 func main() {
-	flag.StringVar(&domain, "domain", "", "domain name to process HTTP/s server ")
-	flag.Parse()
-	if len(domain) == 0 {
-		fmt.Println("The domain parameter is required")
-		flag.Usage()
-		os.Exit(0)
-	}
 	db, err := sql.Open("sqlite3", "users.db")
 	if err != nil{
 		panic(err)
@@ -160,11 +146,6 @@ func main() {
 		Query: rootQuery,
 	})
 
-	go func() {
-		if err := http.ListenAndServe(":80", http.HandlerFunc(redirectTLS)); err != nil {
-			log.Fatalf("ListenAndServe error: %v", err)
-		}
-	}()
 
 	mux := http.NewServeMux()
 
@@ -179,10 +160,9 @@ func main() {
 	})
 	mux.HandleFunc("/reg", Registration)
 	mux.HandleFunc("/login", CreateTokenEndpoint)
-	handler := cors.Default().Handler(mux)
 	// srv := &http.Server{
 	// 	Addr: fmt.Sprintf(":%d", 8443),
 	// 	Handler: handler,
 	// }
-	log.Fatal(http.Serve(autocert.NewListener(domain), handler))
+	log.Fatal(http.Serve(autocert.NewListener("ternyavsky.ru"), mux))
 }
