@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -15,6 +16,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/mitchellh/mapstructure"
 	"github.com/rs/cors"
+	"golang.org/x/crypto/acme/autocert"
 )
 
 type User struct {
@@ -114,6 +116,9 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func redirectTLS(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "https://"+"1195849-cu97797.tw1.ru/"+":443"+r.RequestURI, http.StatusMovedPermanently)
+}
 
 
 func main() {
@@ -145,6 +150,11 @@ func main() {
 		Query: rootQuery,
 	})
 
+	go func() {
+		if err := http.ListenAndServe(":80", http.HandlerFunc(redirectTLS)); err != nil {
+			log.Fatalf("ListenAndServe error: %v", err)
+		}
+	}()
 
 	mux := http.NewServeMux()
 
@@ -164,5 +174,5 @@ func main() {
 	// 	Addr: fmt.Sprintf(":%d", 8443),
 	// 	Handler: handler,
 	// }
-	http.ListenAndServe(":8000", handler)
+	http.Serve(autocert.NewListener("1195849-cu97797.tw1.ru/"), handler)
 }
