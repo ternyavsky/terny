@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -115,6 +116,11 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func redirectTLS(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "https://"+"176.53.163.97"+":443"+r.RequestURI, http.StatusMovedPermanently)
+}
+
+
 func main() {
 	db, err := sql.Open("sqlite3", "users.db")
 	if err != nil{
@@ -122,7 +128,6 @@ func main() {
 	}
 	defer db.Close()
 	
-	fmt.Println("Starting application at http://localhost:8000")
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
@@ -144,6 +149,13 @@ func main() {
 	schema, _ := graphql.NewSchema(graphql.SchemaConfig{
 		Query: rootQuery,
 	})
+
+	go func() {
+		if err := http.ListenAndServe(":80", http.HandlerFunc(redirectTLS)); err != nil {
+			log.Fatalf("ListenAndServe error: %v", err)
+		}
+	}()
+
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
