@@ -1,0 +1,20 @@
+.logout_button{
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    color:aqua;
+    font-size: 16px;
+    text-decoration:dashed;
+    text-decoration-color: aqua;
+    font-family: Montserrat;
+    transition: all 0.2s;
+    
+}
+
+.logout_button:hover{
+    color: #3b7e75;
+}
+
+

@@ -8,8 +8,11 @@ import (
 	"net/http"
 	"time"
 
+	"database/sql"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/graphql-go/graphql"
+	_ "github.com/mattn/go-sqlite3"
 	"github.com/mitchellh/mapstructure"
 	"github.com/rs/cors"
 )
@@ -78,6 +81,17 @@ func validateJwt(t string) (interface{}, error) {
 	}
 }
 
+func Registration(w http.ResponseWriter, r *http.Request){
+	var user User 
+	json.NewDecoder(r.Body).Decode(&user)
+
+	RegUser(user.Username, user.Password)
+	w.Header().Set("content-type", "application/json")
+	w.Write([]byte("{'status' : 201} "))
+}
+
+
+
 func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 	var user User
 	json.NewDecoder(r.Body).Decode(&user)
@@ -101,6 +115,12 @@ func CreateTokenEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	db, err := sql.Open("sqlite3", "users.db")
+	if err != nil{
+		panic(err)
+	}
+	defer db.Close()
+	
 	fmt.Println("Starting application at http://localhost:8000")
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
@@ -111,14 +131,10 @@ func main() {
 					acc, err := validateJwt(p.Context.Value("token").(string))
 					if err != nil {
 						return nil, err
-
 					}
-					for _, account := range accounts {
-						if account.Username == acc.(User).Username {
-							return account, nil
-						}
-					}
-					return &User{}, nil
+					user := GetUser(acc.(User).Username, acc.(User).Password)
+					return user, nil
+					
 				},
 			},
 		},
@@ -138,6 +154,7 @@ func main() {
 		json.NewEncoder(w).Encode(result)
 
 	})
+	mux.HandleFunc("/reg", Registration)
 	mux.HandleFunc("/login", CreateTokenEndpoint)
 	handler := cors.Default().Handler(mux)
 	http.ListenAndServe(":8000", handler)

@@ -3,24 +3,12 @@ import "./Header.css"
 import { deleteCookie, getCookie } from "~/cookie";
 import { Scripts } from "solid-start";
 import { A } from "@solidjs/router";
+import { name, setName } from "./Log";
+import {GetUserName} from "~/utils";
 
 export default function Header(){
-    const [username, setUsername] = createSignal<string>("Login")
-    onMount( async () => {
-        const token: string | undefined = getCookie("token")
-        if (token != undefined){
-            const res = await fetch(`http://localhost:8000/graphql?query={account{id,username}}&token=${token}`)
-            if (res.ok){
-                let result = await res.json()
-                if ("errors" in result){
-                    deleteCookie("token")
-                }
-                setUsername(result["data"]["account"].username)
-            }
-        }
-        
-
-        
+    onMount(() => {
+        GetUserName()
     })
     
     return(
@@ -55,15 +43,21 @@ export default function Header(){
                 </a>
             </div>
             <div class="header_item">
-                <A href="/login">
+                {
+                name() == "Login" || "" ? (
+                    <A href="/login">
                     <h4 class="header_item_text">
-                        {username()}
+                        {name()}
                     </h4>
-                
-                       
-
-              
                 </A>
+                ) : (
+                    <A href="/user">
+                    <h4 class="header_item_text">
+                        {name()}
+                    </h4>
+                </A>
+                )
+                }
             </div>
 
             </div>

@@ -1,15 +1,16 @@
 import { A, Navigate } from "@solidjs/router"
 import "./Log.css"
 import { createSignal } from "solid-js"
-import { setCookie } from "~/cookie"
+import { setCookie, getCookie, deleteCookie } from "~/cookie"
 import { redirect, useNavigate } from "solid-start"
+import {GetUserName} from "~/utils"
 
 
 
 
 const [username, setUsername] = createSignal<string>("")
 const [password, setPassword] = createSignal<string>("")
-
+export const [name, setName] = createSignal("Login")
 
 const PostLogin = async (username:string, password: string) =>{
   
@@ -29,6 +30,8 @@ const PostLogin = async (username:string, password: string) =>{
 
     
   }
+  
+  GetUserName()
 }
 
 
@@ -48,7 +51,13 @@ export default function Login(){
             PostLogin(username(), password())
             setUsername("")
             setPassword("")
-            navigate("/", {scroll: true})
+            console.log(name())
+            if (name() == ""){
+              alert("user not found")
+            } else {
+              navigate("/")
+            }
+            
           }
           }
           
