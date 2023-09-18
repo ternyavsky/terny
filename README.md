@@ -12,7 +12,7 @@ Frontend:
 - TypeScript
 
 Backend:
-- Golang
+- Go
 - GraphQL
 
 
